@@ -88,7 +88,7 @@ class PropertyUnggulan extends Component {
 
     return (
         <Col xs={12} sm={12} md={12} lg={12}  style={{backgroundColor:'#fcfcfc',width:'100%'}}>
-               <div className="content" style={{marginTop:10,backgroundColor:'#01ba42',marginLeft:0,marginRight:-10}}>
+               <div className="content" style={{marginTop:20,backgroundColor:'#01ba42',marginLeft:0,marginRight:-10}}>
                 <div style={{marginLeft:5, marginRight:5}}>
                <Row style={{padding:0}}>
                     <span style={{foat:'left',color:'#ffffff',width:'70%',marginTop:0,padding:5,fontWeight:'bold'}}>Properti Unggulan</span>                 
