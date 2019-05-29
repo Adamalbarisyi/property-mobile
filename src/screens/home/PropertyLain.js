@@ -6,7 +6,7 @@ render(){
     return(
         <Row>
             <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#fcfcfc',width:'100%'}}>
-               <div className="content" style={{marginTop:0}}>
+               <div className="content" style={{marginTop:0,marginBootom:0}}>
                 <div style={{margin:0}}>
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Property Menarik Lainnya</span>                 
