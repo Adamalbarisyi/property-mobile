@@ -30,9 +30,8 @@ constructor(props) {
       //Print Console Log Key Pencarian
       console.log('Proses Mencari');
       console.log(this.state.alamat);
-      console.log(this.state.title);
-              
-    }
+      console.log(this.state.title);      
+      }
     }
 
 
@@ -83,8 +82,8 @@ constructor(props) {
               <center>
              
           
-                  <Form inline style={{width:'100%',marginRight:-15,marginLeft:10}}>
-                      <InputGroup  size="lg" className="mb-3" style={{marginRight:10, width:'30%',marginTop:20}}>
+                  <Form  inline style={{width:'100%',marginRight:-15,marginLeft:10}}>
+                      <InputGroup  size="sm" className="mb-3" style={{marginRight:10, width:'30%',marginTop:20}}>
                           <InputGroup.Prepend>
                               <InputGroup.Text id="icon_search" style={{backgroundColor: 'white'}}>
                               <i className="material-icons">location_on</i>
@@ -97,10 +96,10 @@ constructor(props) {
                           
                       </InputGroup>                 
 
-                      <InputGroup size="lg" className="mb-3" style={{width:'60%',marginTop:20}}>
+                      <InputGroup size='sm' className="mb-3" style={{width:'60%',marginTop:20}}>
                           <InputGroup.Prepend>
                               <InputGroup.Text id="icon_search" style={{backgroundColor: 'white'}}>
-                              <i className="material-icons">
+                              <i className="material-icons" style={{height:20}}>
                               search
                               </i>
                               </InputGroup.Text>
@@ -112,7 +111,7 @@ constructor(props) {
                       search:'?alamat='+this.state.alamat+'&cari='+this.state.title,
                       state: 'flushDeal' }}  style={{textDecoration: 'none'}}>   
                       <InputGroup.Append>
-                          <Button style={{color:'white', height:48, width:'100%'}} variant='danger'
+                          <Button variant='danger' style={{color:'white', height:31, width:'100%',fontSize:12}} 
                           onChange={this.handleChange.bind(this)}
                           >Cari</Button>
                         </InputGroup.Append>
