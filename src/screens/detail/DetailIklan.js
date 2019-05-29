@@ -12,59 +12,48 @@ render(){
             
             <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#f9f7f7',width:'100%'}}>
                <div className="content">
-                <div style={{marginLeft:10, marginRight:10}}>
+                <div style={{margin:0}}>
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Property Menarik Lainnya</span>                 
                      
-                     <Col xs={12} sm={12} md={12} lg={12} style={{padding:0,paddingRight:5}}>
-                       <Card style={{ width: '99%' }}>
-                          <Card.Img variant="top" src="https://via.placeholder.com/200x100" />
-                          <Card.Body>
-                            <Card.Title>Card Title</Card.Title>
-                            <Card.Text>
-                              Some quick 
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-                     </Col>
+                     <Col xs={12} sm={12} md={12} lg={12} style={{width:'100%'}}>
 
-                     <h5 style={{marginTop:20,width:'100%'}}>Spesifikasi Singkat</h5>
-                  
-                     <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}}>
-                        <img style={{width:25,height:25, marginRight:10, marginLeft:10}} src={Tanah} alt="Luas Tanah"/>                
-                        <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{color:'#000000'}}>12312</span></span>
-                     </Col>
-                     <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}} >
-                        <img style={{width:25,height:25, marginRight:10, marginLeft:10}} src={Tanah} alt="Luas Tanah"/>
-                        <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{color:'#000000'}}>2123</span></span>
+                          <img  style={{width:'100%'}} variant="top" src="https://via.placeholder.com/200x100" />
+                       
+                          <div style={{marginTop:20}}>
+                              <h5 style={{fontWeight:'bold',fontSize:24}}>Dijual Tanah</h5>
+                              <h6 style={{fontSize:12}}>Yogyakarta</h6>
+                              <h5 style={{marginTop:20,width:'100%',fontSize:18}}>Spesifikasi Singkat</h5>
+                              <Row>
+                              <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}}>
+                                 <img style={{width:25,height:25, marginRight:10, marginLeft:20}} src={Tanah} alt="Luas Tanah"/>                
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{marginLeft:80,color:'#000000'}}>12312</span></span>
+                              </Col>
+                              <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}} >
+                                 <img style={{width:25,height:25, marginRight:10, marginLeft:10}} src={Tanah} alt="Luas Tanah"/>
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{marginLeft:50,color:'#000000'}}>21sdsd23</span></span>
+                              </Col>
+                           </Row>
+                           </div>     
                      </Col>
                    </Row>
                    <hr/>
                     <Row>
-                                <Col xs={6} sm={6} md={6} lg={6} style={{padding:0}}>
-                                <img style={{float:'left',width:'25%',height:25, marginRight:10, marginLeft:10}} src={Flag}  alt="Flag"/>
-                                        
-                                 <h6 style={{float:'left',color:'#cc0001',fontSize:12 }}>Laporkan Iklan </h6>
-                                </Col>
-                                <Col xs={6} sm={6} md={6} lg={6} style={{padding:0}}>
-                                <h6 style={{float:'right', color:'#95a5a6'}}>
-                                Dilihat :201</h6>
-                                
-                                <i className="material-icons" style={{float:'right', marginRight:5,color:'#95a5a6'}}>
-                                visibility
-                                </i>
-                                </Col>
-                                </Row>
+                        <Col xs={6} sm={6} md={6} lg={6} style={{padding:0}}>
+                           <img style={{float:'left',width:'10%', marginRight:10, marginLeft:10}} src={Flag}  alt="Flag"/>   
+                           <h6 style={{float:'left',color:'#cc0001',fontSize:12 }}>Laporkan Iklan </h6>
+                        </Col>
+                        <Col xs={6} sm={6} md={6} lg={6} style={{padding:0}}>
+                           <i className="material-icons" style={{float:'left', marginLeft:50,color:'#95a5a6'}}>visibility</i>
+                           <h6 style={{float:'left',marginLeft:10,marginTop:5, color:'#95a5a6',fontSize:12}}>Dilihat :201</h6>
+                        </Col>
+                  </Row>
                 </div>
                </div>
             </Col>
 
-
-
-
-
             <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#f9f7f7',width:'100%'}}>
-               <div className="content">
+               <div className="content" style={{marginTop:0,marginBootom:0}}>
                 <div style={{marginLeft:10, marginRight:10}}>
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Pemasang Iklan</span>                 
@@ -74,7 +63,7 @@ render(){
                                     
                    </Col>
                      <Col xs={5} sm={5} md={5} lg={5} style={{padding:0,marginTop:10}} >
-                       <h5>MR.ABUD</h5>
+                       <h5 style={{color:'#f69402'}}>MR.ABUD</h5>
                         <span>
                                        <i className="material-icons"  style={{float:'left', color:'#95a5a6', fontSize:16}}>
                                 location_on
