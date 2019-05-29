@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col,Card,Button} from 'react-bootstrap';
+import { Row, Col,Button} from 'react-bootstrap';
 import Tanah from '../../assets/icon_detail_iklan/luas tanah.png';
 import Flag from '../../assets/icon_detail_iklan/flag.png';
 import {Link } from "react-router-dom";
