@@ -1,16 +1,96 @@
 import React, { Component } from 'react'
 import { Row, Col,Button} from 'react-bootstrap';
+import ImageGallery from 'react-image-gallery';
+import AsyncFetch from '../../api/AsyncFetch'
 import Tanah from '../../assets/icon_detail_iklan/luas tanah.png';
 import Flag from '../../assets/icon_detail_iklan/flag.png';
 import {Link } from "react-router-dom";
 import Moment from 'react-moment';
 
+import "react-image-gallery/styles/css/image-gallery.css";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import queryString from 'query-string';
+
+import ScrollToTop from 'react-router-scroll-top'  
+var numeral = require('numeral');
 
 export default class DetailIklan extends Component {
+      state = {
+      data: [],
+      foto: [],
+      harga:'20000000000',
+      url: ""
+  }
+
+  setStateAsync(state) {
+      return new Promise(resolve => {
+          this.setState(state, resolve)
+      })
+  }
+
+  async componentWillMount() {
+     let url_ku = this.props.location.search;
+     console.log(url_ku);
+     let params = queryString.parse(url_ku);
+     console.log(params);
+      console.log(params.cari)
+      let url_api='https://apiproday.herokuapp.com/api/v1/getadvert_title?'
+      let cari='cari='+params.cari
+      let id ='&id='+params.id
+      this.setState({url:url_api+cari+id})
+
+    
+    
+  }
+
+    async componentDidMount(){
+
+      console.log("Component A Will Mount")
+      const url = this.state.url
+      console.log("SetState with AsyncFetch")
+      await this.setStateAsync({
+          isLoad: true,
+          ...await AsyncFetch(url)
+      })
+
+    this.setState({harga:this.state.data.harga})
+    console.log(this.state.harga)
+      console.log(this.state.url)
+  }
+   cek_nego(e){
+    if(e==="true"){
+      return "Nego"
+    }else{
+      return "NeT"
+    }
+
+  }
+  to_rupiah(harga){
+    var string = numeral(harga).format('0,0');
+    var ini=string.replace(",", "." );
+    return ini.replace(",", "." );
+  }
+  to_number(nomor){
+    let stringpart1 = '62'
+    var str = String(nomor)
+    var res = str.substring(1);
+    return stringpart1+res
+    
+  }
+
 render(){
+
+      const images = this.state.data.gambar
+  const capitalize = (s) => {
+      if (typeof s !== 'string') return ''
+      return s.charAt(0).toUpperCase() + s.slice(1)
+      }
+      const dateToFormat = '1976-04-19T12:59-0500';
     return(
+
         <Row>
 
+    <ScrollToTop/>
         <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#f9f7f7',width:'100%',marginBootom:10}}>
                <div className="content" style={{marginTop:20,padding:10}}>
                 <div style={{marginLeft:10, marginRight:10,marginTop:0,marginBootom:0}}>
@@ -21,17 +101,20 @@ render(){
                            Home
                         </Link>
                         <i className="material-icons" style={{fontSize:11}}>chevron_right</i> 
-                        <Link  style={{textDecoration: 'none',color:'grey'}}>  
-                           Yogyakarta
-                        </Link>
+                       <Link to={{ pathname: '/ListIklan',
+                      search:'?prov='+this.state.data.provinsi+'&kab='+this.state.data.kab+'&cari='}}  style={{textDecoration: 'none',color:'grey'}}>  
+                              {capitalize(this.state.data.provinsi)}
+                              </Link>
                      </span>
                   </li>
                   <li style={{color:'grey'}}>
                      <span style={{fontSize:12}}>
-                        <i className="material-icons" style={{fontSize:11}}>chevron_right</i> Tanah</span>
+                        <i className="material-icons" style={{fontSize:11}}>chevron_right</i> {capitalize(this.state.data.kategori)}</span>
                   </li>
                   <li style={{color:'grey'}}>
-                     <span style={{fontSize:12}}><i className="material-icons" style={{fontSize:11}}>chevron_right</i> TuanTanah</span>
+                     <span style={{fontSize:12}}><i className="material-icons" style={{fontSize:11}}>chevron_right</i> 
+                     {capitalize(this.state.data.penjual)}
+                     </span>
                   </li>
                                
                 </Row>
@@ -48,17 +131,17 @@ render(){
                    <Row style={{marginRight:0}}>
                         <li>
                            <span style={{fontSize:10}}>
-                           <i className="material-icons" style={{fontSize:12,marginRight:3}}>format_list_bulleted</i>Rumah</span>
+                           <i className="material-icons" style={{fontSize:12,marginRight:3}}>format_list_bulleted</i>{capitalize(this.state.data.kategori)}</span>
                         </li>
                         <li style={{marginLeft:5}}>
                            <span style={{fontSize:10}}><i className="material-icons" style={{fontSize:12}}>access_time</i> 
-                              <Moment format="D MMM YYYY" withTitle style={{fontSize:9,marginLeft:3}}> </Moment>
+                              <Moment format="D MMM YYYY" withTitle style={{fontSize:9,marginLeft:3}}>{this.state.data.date}</Moment>
                            </span>
                         </li>
                         <li style={{marginLeft:5}}>
                            <span style={{fontSize:10}}>
                               <i className="material-icons" style={{fontSize:12}}>location_on</i>   
-                              yogyakarta
+                              {capitalize(this.state.data.kab)}
                            </span>
                         </li>
                       </Row>
@@ -67,7 +150,7 @@ render(){
                     <Col xs={5} sm={5} md={5} lg={5} style={{backgroundColor:'#f09712',padding:0}}>
                     
                      <h5 style={{color:'#ffffff',fontSize:14,marginTop:10, float: 'left',marginLeft:20,fontWeight:20}}>
-                        Rp 4.000.000
+                        Rp {this.to_rupiah(this.state.data.harga)}
                             <h2 style={{fontSize:9, color: '#ffffff', float: 'right',marginTop:5,marginLeft:5,marginBottom:0}}>Nego</h2>
                         </h5>     
                    </Col>
@@ -76,21 +159,26 @@ render(){
                
                 <div style={{margin:0}}>
                <Row style={{listStyleType: "none",marginRight:0}}>
-               <img  style={{width:'110%',marginLeft:-5,paddingRight:-10}}  variant="top" src="https://via.placeholder.com/200x300" />
 
+                        
+                                <ImageGallery items={images} autoPlay={true} lazyLoad={true} showThumbnails={false} useTranslate3D={false} showBullets={false} showNav={false} showPlayButton={false} className="caraousel_image" 
+                                 onError={(e) => {
+                                 e.target.src = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png' // some replacement image
+                                 }}/>
+                      
                      <Col xs={12} sm={12} md={12} lg={12} style={{width:'100%'}}>
                           <div style={{marginTop:20}}>
-                              <h5 style={{fontWeight:'bold',fontSize:24}}>Dijual Tanah</h5>
-                              <h6 style={{fontSize:12}}>Yogyakarta</h6>
+                              <h5 style={{fontWeight:'bold',fontSize:20}}>{this.state.data.title}</h5>
+                              <h6 style={{fontSize:12}}>{this.state.data.alamat}</h6>
                               <h5 style={{marginTop:20,width:'100%',fontSize:18}}>Spesifikasi Singkat</h5>
                               <Row>
                               <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}}>
                                  <img style={{width:25,height:25, marginRight:10, marginLeft:20}} src={Tanah} alt="Luas Tanah"/>                
-                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{marginLeft:80,color:'#000000'}}>12312</span></span>
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{marginLeft:80,color:'#000000'}}>{this.state.data.luas}  m<sup>2</sup></span></span>
                               </Col>
                               <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}} >
                                  <img style={{width:25,height:25, marginRight:10, marginLeft:10}} src={Tanah} alt="Luas Tanah"/>
-                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{marginLeft:50,color:'#000000'}}>21sdsd23</span></span>
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{marginLeft:50,color:'#000000'}}>{this.state.data.sertifikasi}</span></span>
                               </Col>
                            </Row>
                            </div>     
@@ -122,7 +210,7 @@ render(){
                                     
                    </Col>
                      <Col xs={5} sm={5} md={5} lg={5} style={{padding:0,marginTop:10}} >
-                       <h5 style={{fontSize:16,color:'#f69402',marginBottom:0,marginTop:10}}>MR.ABUD</h5>
+                       <h5 style={{fontSize:16,color:'#f69402',marginBottom:0,marginTop:10}}>{capitalize(this.state.data.penjual)}</h5>
                         <span>
                            <i className="material-icons"  style={{float:'left', color:'#95a5a6', fontSize:14}}>
                               location_on
@@ -164,11 +252,11 @@ render(){
                    </Col>
                      <Col xs={7} sm={7} md={7} lg={7} style={{padding:0,marginTop:10}} >
                        <ul style={{listStyleType: "none", marginLeft:0, paddingLeft:0,fontSize:12,color:'#95a5a6'}}>
-                            <li>: Tanah </li>
-                            <li>: Dijual</li>
-                            <li>: Rp.3.000.000</li>
-                            <li>: 240 m2</li>
-                            <li>: SHM</li>
+                            <li>: {capitalize(this.state.data.kategori)} </li>
+                            <li>: {this.cek_nego(this.state.data.nego)}</li>
+                            <li>: {this.to_rupiah(this.state.harga)}</li>
+                            <li>: {this.state.data.luas} m<sup>2</sup></li>
+                            <li>: {this.state.data.sertifikasi}</li>
                         </ul>
                      </Col>            
                 </Row>
@@ -181,8 +269,9 @@ render(){
                 <div style={{marginLeft:10, marginRight:10}}>
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Deskripsi</span>                 
-                     <p style={{fontSize:12}}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In excepturi fugit ducimus doloremque incidunt. Natus, sequi odio officia aperiam eius doloremque autem doloribus ullam. At sequi perspiciatis laboriosam recusandae soluta.
-                     lore</p>
+                     <p style={{fontSize:12}}>
+                     { ReactHtmlParser(this.state.data.keterangan) }
+                     </p>
                   
                    
                    </Row>
