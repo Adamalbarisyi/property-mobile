@@ -8,6 +8,13 @@ import PropertyLain from "./screens/home/PropertyLain";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollUpButton from "react-scroll-up-button";
+import Provinsi from './screens/iklan/region/Provinsi';
+import Yogyakarta from './screens/iklan/subregion/Yogyakarta';
+import JawaTimur from './screens/iklan/subregion/JawaTimur';
+import JawaBarat from './screens/iklan/subregion/JawaBarat';
+
+
+
 
 class Main extends Component {
   render() {
@@ -25,6 +32,10 @@ class Main extends Component {
                 <Row>
                     <Route exact path="/" component={PropertyUnggulan}/> 
                      <Route exact path="/" component={PropertyLain}/>
+                     <Route exact path="/" component={Provinsi}/>
+                     <Route exact path="/" component={Yogyakarta}/>
+                     <Route exact path="/" component={JawaTimur}/>
+                     <Route exact path="/" component={JawaBarat}/>
                      <Route exact path="/DetailIklan" component={Detail}/> 
 
                 </Row>
