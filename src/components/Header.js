@@ -75,7 +75,10 @@ constructor(props) {
             <Row>
 
             <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#fcfcfc',padding:-10,width:'100%'}}>
+
+             <a href="/" style={{textDecoration: 'none'}}>
                 <img src={logo} alt="Logo" style={{marginLeft:30,width:'30%',marginTop:20,marginBottom:20}}/>
+                </a>
             </Col>
             <Col xs={12} sm={12} md={12} lg={12} style={{backgroundColor:'#ececec'}}>
      

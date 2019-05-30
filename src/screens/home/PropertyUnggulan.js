@@ -3,9 +3,9 @@ import AsyncFetch from '../../api/AsyncFetch';
 import Slider from "react-slick";
 import millify from 'millify';
 import { Card } from 'react-bootstrap';
-import { Col, Row, Button} from 'react-bootstrap';
+import { Col, Row, Button, Container} from 'react-bootstrap';
 import {Link } from "react-router-dom";
-
+var numeral = require('numeral');
 
 class PropertyUnggulan extends Component {
 
@@ -31,13 +31,10 @@ class PropertyUnggulan extends Component {
           ...await AsyncFetch(url)
       })
   }
-  ambilangka(value) {
-      return millify(value, {
-          precision: 2,
-          decimalSeparator: ',',
-          units: ['', 'Ribu', 'Juta', 'Milyar', 'Triliun'],
-          space: true,
-      })
+   to_rupiah(harga){
+    var string = numeral(harga).format('0,0');
+    var ini=string.replace(",", "." );
+    return ini.replace(",", "." );
   }
   nego(value) {
       if (value === 'true') {
@@ -55,7 +52,7 @@ class PropertyUnggulan extends Component {
                console.log(children)
            }
            var settings = {
-               dots: true,
+               dots: false,
                infinite: true,
                speed: 300,
                slidesToShow: 1,
@@ -87,8 +84,15 @@ class PropertyUnggulan extends Component {
            };
 
     return (
-        <Col xs={12} sm={12} md={12} lg={12}  style={{backgroundColor:'#fcfcfc',width:'100%'}}>
-               <div className="content" style={{marginTop:20,backgroundColor:'#01ba42',marginLeft:0,marginRight:-10}}>
+         <Container style={{marginBottom:20}}>
+        <Slider {...settings}>
+            { this.state.isLoad && children.map((value, index) =>
+
+        <Col xs={12} sm={12} md={12} lg={12}  style={{backgroundColor:'#fcfcfc',width:'100%', paddingLeft:10, paddingRight:10}}  key={value.id}>
+  <Link to={{ pathname: '/DetailIklan',
+                      search:'?cari='+value.title+'&id='+value.id,
+                      state: 'flushDeal' }} style={{textDecoration: 'none'}}>
+               <div className="content1" style={{marginTop:20,backgroundColor:'#01ba42',marginLeft:0,marginRight:-10}}>
                 <div style={{marginLeft:5, marginRight:5}}>
                <Row style={{padding:0}}>
                     <span style={{foat:'left',color:'#ffffff',width:'70%',marginTop:0,padding:5,fontWeight:'bold'}}>Properti Unggulan</span>                 
@@ -97,12 +101,18 @@ class PropertyUnggulan extends Component {
                      </div>
                      <div style={{marginLeft:0,marginRight:0,marginTop:20,width:'100%'}}>
                        <Card style={{ width: '100%' }}>
-                          <Card.Img variant="top" src="https://via.placeholder.com/200x100" />
+                       <Card.Img style={{height:200}} variant="top" src={value.foto} onError={(e) => {
+                        e.target.src = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png' // some replacement image
+                         }} />
                           <Card.Body style={{backgroundColor:'#fcf4f4'}}>
-                            <Card.Title>Tanah Dijual</Card.Title>
+                            <Card.Title>
+                        <h6 style={{fontWeight:400,fontSize:15, textAlign:'justify'}} className="text_title">
+                        {(value.title.substring(0,55)+'..')}
+                        </h6>
+                            </Card.Title>
                              <Card.Subtitle className="mb-2 text-muted">Yogyakarta</Card.Subtitle>
                              <Card.Title style={{color:'#db4d4d', fontWeight:500, float: 'left'}}>
-                        Rp 4.000.000
+                        Rp  {this.to_rupiah(value.harga)}
                             <h2 style={{fontSize:15, color: '#95a5a6', float: 'right',marginTop:5, marginLeft:10,marginBottom:0}}>Nego</h2>
                         </Card.Title>
                           </Card.Body>
@@ -111,7 +121,12 @@ class PropertyUnggulan extends Component {
                </Row>
               </div>
                </div>
+               </Link>
             </Col>
+
+            ) }
+        </Slider>
+        </Container>
 
     );
   }
