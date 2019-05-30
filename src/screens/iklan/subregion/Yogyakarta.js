@@ -11,10 +11,10 @@ render(){
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:-10,marginBottom:5,marginLeft:10,fontWeight:'bold',fontSize:'100%'}}>Yogyakarta</span>                 
                   <ListGroup style={{width:'100%'}}>
-                      <ListGroupItem href="#link1">yogyakarta</ListGroupItem>
-                      <ListGroupItem href="#link2">bantul</ListGroupItem>
-                      <ListGroupItem href="#link3">sleman</ListGroupItem>
-                      <ListGroupItem href="#link4">kulonprogo</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link1">yogyakarta</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link2">bantul</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link3">sleman</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link4">kulonprogo</ListGroupItem>
                       {/* <ListGroupItem href="#link5">Gunung Kidul</ListGroupItem> */}
                   </ListGroup>
                    </Row>

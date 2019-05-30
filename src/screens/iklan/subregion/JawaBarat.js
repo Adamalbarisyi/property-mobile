@@ -11,12 +11,12 @@ render(){
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:-10,marginBottom:5,marginLeft:10,fontWeight:'bold',fontSize:'100%'}}>Jawa Barat</span>                 
                   <ListGroup style={{width:'100%'}}>
-                      <ListGroupItem href="#link1">bekasikab</ListGroupItem>
-                      <ListGroupItem href="#link2">bekasikot</ListGroupItem>
-                      <ListGroupItem href="#link3">bogorkab</ListGroupItem>
-                      <ListGroupItem href="#link4">bogorkot</ListGroupItem>
-                      <ListGroupItem href="#link5">depokkot</ListGroupItem>
-                      <ListGroupItem href="#link6">purwakartakota</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link1">bekasikab</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link2">bekasikot</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link3">bogorkab</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link4">bogorkot</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link5">depokkot</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link6">purwakartakota</ListGroupItem>
 
                       {/* <ListGroupItem href="#link1">Bandung</ListGroupItem>
                       <ListGroupItem href="#link2">Bandung Barat</ListGroupItem>

@@ -11,7 +11,7 @@ render(){
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:-10,marginBottom:5,marginLeft:10,fontWeight:'bold',fontSize:'100%'}}>Jawa Timur</span>                 
                   <ListGroup style={{width:'100%'}}>
-                      <ListGroupItem href="#link1">sidoarjokab</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link1">sidoarjokab</ListGroupItem>
                      
                   </ListGroup>
                    </Row>

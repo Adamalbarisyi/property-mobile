@@ -18,22 +18,14 @@ body {
 box-shadow: 2px 6px 35px 0px rgba(189,195,199,0.74);
 }
 
-.list-group li:nth-child(1){
-  border-top: 0 none;
-}
-.caraousel_image {
-  height: 500px;
-}
 
 .slick-slide:first-child {
     z-index: 10;
 }
 
-.list_div{
-  background-color: white;
+.list-item{
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 10px 10px 10px 20px;
 }
 .list_div_search{
   background-color: white;

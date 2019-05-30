@@ -11,9 +11,9 @@ render(){
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:-10,marginBottom:5,marginLeft:10,fontWeight:'bold',fontSize:'100%'}}> Semua Provinsi</span>                 
                   <ListGroup style={{width:'100%'}}>
-                      <ListGroupItem href="#link1">Yogyakarta</ListGroupItem>
-                      <ListGroupItem href="#link2">Jabar</ListGroupItem>
-                      <ListGroupItem href="#link3">Jatim</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link1">Yogyakarta</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link2">Jabar</ListGroupItem>
+                      <ListGroupItem className="list-item" href="#link3">Jatim</ListGroupItem>
                   </ListGroup>
                    </Row>
                 </div>
