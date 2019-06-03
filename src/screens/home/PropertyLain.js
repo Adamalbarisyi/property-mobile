@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 //import millify from 'millify';
 import { Row, Col,Card} from 'react-bootstrap';
-<<<<<<< HEAD
-import { ListGroupItem,ListGroup } from "react-bootstrap";
-
-=======
 import AsyncFetch from '../../api/AsyncFetch'
 import {Link } from "react-router-dom";
 var numeral = require('numeral');
->>>>>>> 7ed8b64fa44d48016e7ffc8c3863c6348b9b58ed
 export default class DetailIklan extends Component {
    state = {
       data: [],
@@ -58,7 +53,7 @@ render(){
 
     return(
         <Row style={{width:'100%',margin:0}}>
-            <Col xs={12} sm={12} md={12} lg={12} style={{backgroundColor:'#fcfcfc',marginBottom:20}}>
+            <Col xs={12} sm={12} md={12} lg={12} style={{backgroundColor:'#fcfcfc'}}>
                <div className="content" style={{marginTop:0,marginLeft:0,marginBottom:0,marginRight:-10}}>
                <Row>
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:-10,marginBottom:5,padding:5,fontWeight:'bold',fontSize:'100%'}}>Property Menarik Lainnya</span>                 
@@ -74,16 +69,16 @@ render(){
                       state: 'flushDeal' }} style={{textDecoration: 'none'}}>
 
                         <Card style={{ width: '100%' }}>
-                          <Card.Img variant="top" src={value.foto} onError={(e) => {
+                          <Card.Img variant="top" sizes={{hegiht:200,width:200}} src={value.foto} onError={(e) => {
                         e.target.src = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png' // some replacement image
                          }} />
-                          <Card.Body >
-                            <Card.Title style={{fontSize:18,marginLeft:-10}}>
-                        <h6 style={{fontWeight:400,fontSize:15, textAlign:'justify'}} className="text_title">
+                          <Card.Body style={{paddingLeft:10,paddingRight:10}} >
+                            <Card.Title style={{fontSize:18,padding:0}}>
+                        <h6 style={{fontWeight:400,fontSize:12, textAlign:'left'}} className="text_title">
                         {(value.title.substring(0,55)+'..')}
                         </h6></Card.Title>
-                             <Card.Subtitle className="mb-2 text-muted" style={{marginLeft:-10}}>Yogyakarta</Card.Subtitle>
-                             <Card.Title style={{color:'#db4d4d', fontWeight:500,fontSize:14,marginTop:10, float: 'left',marginLeft:-10}}>
+                             <Card.Title className="mb-2 text-muted" style={{fontSize:12,marginBottom:-10}}>Yogyakarta</Card.Title>
+                             <Card.Title style={{color:'#db4d4d', fontWeight:500,fontSize:14, float: 'left',marginBottom:0}}>
                         Rp {this.to_rupiah(value.harga)}
                             <h2 style={{fontSize:12, color: '#95a5a6', float: 'right',marginLeft:5,marginBottom:0}}>Nego</h2>
                         </Card.Title>
@@ -97,7 +92,9 @@ render(){
               }
                    </Row>
                 </div>
+             
             </Col>
+
         </Row>
 
     )

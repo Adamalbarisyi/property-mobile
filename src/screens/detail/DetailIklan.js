@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Row, Col,Button} from 'react-bootstrap';
 import ImageGallery from 'react-image-gallery';
 import AsyncFetch from '../../api/AsyncFetch'
+import Penjual from '../../assets/icon_detail_iklan/penjual.png';
 import Tanah from '../../assets/icon_detail_iklan/luas tanah.png';
+import Sertifikat from '../../assets/icon_detail_iklan/sertifikat.png';
 import Flag from '../../assets/icon_detail_iklan/flag.png';
 import {Link } from "react-router-dom";
 import Moment from 'react-moment';
@@ -77,14 +79,18 @@ export default class DetailIklan extends Component {
     return stringpart1+res
     
   }
+  
+  
 
 render(){
 
       const images = this.state.data.gambar
-  const capitalize = (s) => {
-      if (typeof s !== 'string') return ''
-      return s.charAt(0).toUpperCase() + s.slice(1)
-      }
+      
+      const capitalize = (s) => {
+             if (typeof s !== 'string') return ''
+             return s.charAt(0).toUpperCase() + s.slice(1)
+          }
+     
       const dateToFormat = '1976-04-19T12:59-0500';
     return(
 
@@ -149,7 +155,7 @@ render(){
 
                     <Col xs={5} sm={5} md={5} lg={5} style={{backgroundColor:'#f09712',padding:0}}>
                     
-                     <h5 style={{color:'#ffffff',fontSize:14,marginTop:10, float: 'left',marginLeft:20,fontWeight:20}}>
+                     <h5 style={{color:'#ffffff',fontSize:12,marginTop:10, float: 'left',marginLeft:20,fontWeight:20}}>
                         Rp {this.to_rupiah(this.state.data.harga)}
                             <h2 style={{fontSize:9, color: '#ffffff', float: 'right',marginTop:5,marginLeft:5,marginBottom:0}}>Nego</h2>
                         </h5>     
@@ -159,13 +165,12 @@ render(){
                
                 <div style={{margin:0}}>
                <Row style={{listStyleType: "none",marginRight:0}}>
+                     <ImageGallery items={images} autoPlay={true} lazyLoad={true} showThumbnails={false} useTranslate3D={false} showBullets={false} showNav={false} showPlayButton={false} className="caraousel_image" 
+                         onError={(e) => {
+                         e.target.src = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png' // some replacement image
+                        }}
+                     />
 
-                        
-                                <ImageGallery items={images} autoPlay={true} lazyLoad={true} showThumbnails={false} useTranslate3D={false} showBullets={false} showNav={false} showPlayButton={false} className="caraousel_image" 
-                                 onError={(e) => {
-                                 e.target.src = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png' // some replacement image
-                                 }}/>
-                      
                      <Col xs={12} sm={12} md={12} lg={12} style={{width:'100%'}}>
                           <div style={{marginTop:20}}>
                               <h5 style={{fontWeight:'bold',fontSize:20}}>{this.state.data.title}</h5>
@@ -173,12 +178,12 @@ render(){
                               <h5 style={{marginTop:20,width:'100%',fontSize:18}}>Spesifikasi Singkat</h5>
                               <Row>
                               <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}}>
-                                 <img style={{width:25,height:25, marginRight:10, marginLeft:20}} src={Tanah} alt="Luas Tanah"/>                
-                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{marginLeft:80,color:'#000000'}}>{this.state.data.luas}  m<sup>2</sup></span></span>
+                                 <img style={{width:40,height:40, marginRight:5, marginLeft:20}} src={Tanah} alt="Luas Tanah"/>                
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}> Luas Tanah<br/><span style={{marginLeft:95,color:'#000000',fontSize:12}}>{this.state.data.luas}  m<sup>2</sup></span></span>
                               </Col>
                               <Col xs={6} sm={6} md={6} lg={6} style={{padding:0,marginTop:10}} >
-                                 <img style={{width:25,height:25, marginRight:10, marginLeft:10}} src={Tanah} alt="Luas Tanah"/>
-                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{marginLeft:50,color:'#000000'}}>{this.state.data.sertifikasi}</span></span>
+                                 <img style={{width:40,height:40, marginRight:5, marginLeft:5}} src={Sertifikat} alt="Sertifikat"/>
+                                 <span style={{color:'#95a5a6',fontSize:14,marginLeft:10}}>Sertifikasi<br/><span style={{marginLeft:80,color:'#000000',fontSize:12}}>{this.state.data.sertifikasi}</span></span>
                               </Col>
                            </Row>
                            </div>     
@@ -206,7 +211,7 @@ render(){
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Pemasang Iklan</span>                 
                      
                      <Col xs={3} sm={3} md={3} lg={3} style={{padding:0,marginTop:10}}>     
-                      <img style={{width:45,height:45, marginRight:10, marginLeft:10}} src={Tanah}  alt="Luas Tanah"/>
+                      <img style={{width:45,height:45, marginRight:10, marginLeft:10}} src={Penjual}  alt="Luas Tanah"/>
                                     
                    </Col>
                      <Col xs={5} sm={5} md={5} lg={5} style={{padding:0,marginTop:10}} >
@@ -265,15 +270,13 @@ render(){
             </Col>
 
             <Col xs={12} sm={12} md={12} lg={12} id="logo" style={{backgroundColor:'#f9f7f7',width:'100%'}}>
-               <div className="content">
+               <div className="content" style={{width:'100%'}}>
                 <div style={{marginLeft:10, marginRight:10}}>
-               <Row>
+               <Row >
                     <span style={{foat:'left',color:'#000000',width:'90%',marginTop:0,padding:5,fontWeight:'bold',fontSize:'100%'}}>Deskripsi</span>                 
-                     <p style={{fontSize:12}}>
+                     <p style={{fontSize:12, width:'100%',marginRight:-10}}>
                      { ReactHtmlParser(this.state.data.keterangan) }
                      </p>
-                  
-                   
                    </Row>
                 </div>
                </div>

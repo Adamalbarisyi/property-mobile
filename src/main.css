@@ -3,9 +3,7 @@ body {
   margin: 0;
 }
 .header {
-  padding: 0 0 20 0;
   width: 100%;
-  margin: 0 auto;
 }
 
 .content {
@@ -18,28 +16,32 @@ body {
 box-shadow: 2px 6px 35px 0px rgba(189,195,199,0.74);
 }
 .content1 {
-  padding: 20px;
+  padding: 20px 20px 20px 20px;
+  margin: 0px -15px 0px -15px;
   -webkit-box-shadow: 2px 6px 35px 0px rgba(189,195,199,0.74);
 -moz-box-shadow: 2px 6px 35px 0px rgba(189,195,199,0.74);
 box-shadow: 2px 6px 35px 0px rgba(189,195,199,0.74);
 }
-.gambar_gallery {
-  width: 100px !important;
+.content3{
+  padding: 20px;
+  margin: 0px 5px 20px 15px;
+  
 }
 
-<<<<<<< HEAD
-=======
+
 .list-group li:nth-child(1){
   border-top: 0 none;
 }
 .caraousel_image {
   height: 100px;
+  width:200px
 }
+
 .image-gallery-image img {
  max-height: 400px;
  height: 300px;
 }
->>>>>>> 7ed8b64fa44d48016e7ffc8c3863c6348b9b58ed
+
 
 .slick-slide:first-child {
     z-index: 10;
